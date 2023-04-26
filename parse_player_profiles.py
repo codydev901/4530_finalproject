@@ -52,7 +52,7 @@ def parse_data():
     # Pull ^ out and put in a DataFrame to see how it looks
 
     parsed_df = [["player_id", "name", "position", "birth_place", "college", "high_school", "draft_team",
-                  "draft_round", "draft_year"]]
+                  "draft_round", "draft_year", "birth_date"]]
     for row in info_json:
         parsed_df.append([row[k] for k in parsed_df[0]])
 
@@ -66,8 +66,13 @@ def parse_data():
     parsed_df = parsed_df[parsed_df['birth_place'].notna()]
     parsed_df = parsed_df[parsed_df['college'].notna()]
     parsed_df = parsed_df[parsed_df['high_school'].notna()]
+    parsed_df = parsed_df[parsed_df['birth_date'].notna()]
     print(parsed_df.head())
     print(parsed_df.info())
+
+    # Convert birth_date to birth_year
+    parsed_df["birth_date"] = parsed_df["birth_date"].apply(lambda x: x.split("-", 1)[0].strip())
+    parsed_df.rename(columns={"birth_date": "birth_year"}, inplace=True)
 
     # So now lets convert birth_place and high_school to "US State" in same format as the Census Data
     # Use another dataset to build a map
