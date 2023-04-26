@@ -74,8 +74,12 @@ def parse_data():
     state_abbrev_df = pd.read_csv("raw_data/states.csv")
     print(state_abbrev_df.head())
     state_abbrev_map = dict()
+    state_abbrev_map_state_to_abr = dict()
+    track_states = []
     for i, row in state_abbrev_df.iterrows():
         state_abbrev_map[row["Abbreviation"]] = row["State"]
+        state_abbrev_map_state_to_abr[row["State"]] = row["Abbreviation"]
+        track_states.append(row["State"])
     print(state_abbrev_map)
 
     # Use helper function to transform
@@ -95,6 +99,16 @@ def parse_data():
     # Caught an edge case w/ high_school_state (not there now)
     print(len(parsed_df["high_school_state"].unique()))
     print(parsed_df["high_school_state"].unique())
+
+    # Remove International Players
+    print("Remove International")
+    print(len(parsed_df))
+    parsed_df = parsed_df[(parsed_df["birth_state"].isin(track_states)) &
+                          (parsed_df["high_school_state"].isin(track_states))]
+    print(len(parsed_df))
+
+    parsed_df["birth_state_abr"] = parsed_df["birth_state"].apply(lambda x: state_abbrev_map_state_to_abr[x])
+    parsed_df["high_school_state_abr"] = parsed_df["high_school_state"].apply(lambda x: state_abbrev_map_state_to_abr[x])
 
     # Write to parsed_data
     parsed_df.to_csv("parsed_data/nfl_players.csv", index=False)

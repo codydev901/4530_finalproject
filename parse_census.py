@@ -45,8 +45,15 @@ def parse_data():
     year_list = list(raw_df["Year"].unique())
     state_list = list(raw_df["Name"].unique())
 
+    # For State Abbrev
+    state_abbrev_df = pd.read_csv("raw_data/states.csv")
+    print(state_abbrev_df.head())
+    state_abbrev_map = dict()
+    for i, row in state_abbrev_df.iterrows():
+        state_abbrev_map[row["State"]] = row["Abbreviation"]
+
     # For final parse step
-    parsed_df = [["state", "year", "population"]]
+    parsed_df = [["state", "year", "population", "state_abr"]]
 
     # For each state and each pair of census years, perform a linear interpolation by weighted average to
     # calculate population for each state on yearly interval
@@ -64,7 +71,7 @@ def parse_data():
                 weighted_base_pop = base_weight * base_pop
                 weighted_next_pop = next_weight * next_pop
                 weighted_pop = int(weighted_base_pop + weighted_next_pop)
-                parsed_df.append([state, range_year, weighted_pop])
+                parsed_df.append([state, range_year, weighted_pop, state_abbrev_map[state]])
 
     # Check and write
     parsed_df = pd.DataFrame(data=parsed_df[1:], columns=parsed_df[0])
