@@ -10,6 +10,8 @@ Course Project
 Parses the NFL player dataset (profiles_1512362725.022629.json) from JSON to a .csv, where each player is associated
 with a US State in terms of where they were born and went to high school. In addition, information regarding their
 position, draft team/year, and college is kept for secondary analysis.
+
+Writes to parsed_data/nfl_players.csv
 """
 
 
