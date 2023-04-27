@@ -60,6 +60,9 @@ def parse_data():
     print(parsed_df.head())
     print(parsed_df.info())
 
+    # Handle an Edge Cases
+    parsed_df['name'] = parsed_df['name'].apply(lambda x: x.strip())
+
     # Mostly complete, will drop nulls involving birth_place, college, high_school since fewer there, but leave nulls
     # for draft_team, draft_round, draft_year since those attributes may or may not be used in more secondary analysis
     # or might be able to be filled in through the game data set.
