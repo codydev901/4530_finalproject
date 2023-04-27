@@ -55,7 +55,7 @@ fig = px.choropleth(sub_df, locations="state_value",
                     scope="usa",
                     color_continuous_scale=px.colors.sequential.RdBu,
                     hover_data=["nfl_players_absolute", "state_pop_ref_value"],
-                    title="NFL Relative Representation")
+                    title="NFL Relative Representation to US Population Distribution")
 st.plotly_chart(fig, use_container_width=True)
 
 st.header("Additional Information")
@@ -68,6 +68,7 @@ st.markdown(f"**MVP HighSchool State**: {super_bowl_mvp_high_school_state}")
 st.header("Interaction Notes")
 st.markdown("Use Slider To Select an NFL Season")
 st.markdown("Choose to see where NFL players that season were born or went to highschool")
+st.markdown("Hover over states to see absolute counts")
 st.markdown("Choropleth shows which ares are over (positive/blue) or under (negative/red) represented in NFL in comparison "
             "to overall US population in relation to highschool year (8 years from season) or birth year (26 years from "
             "season")
