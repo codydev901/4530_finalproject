@@ -7,14 +7,14 @@ pkz325
 CPSC 4530 Spring 2023
 Course Project
 
-Doc Doc Doc
-
 Flow
 birth_state -> high_school -> college
 
 filter by = draft_team
 
 https://plotly.com/python/sankey-diagram/
+
+Testing for the Sankey Diagram implementation.
 """
 
 

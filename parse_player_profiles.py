@@ -46,6 +46,7 @@ def parse_data():
         info_json = json.load(r_file)
     print(len(info_json))
     print(info_json[0])
+    print(len(info_json[0]))
 
     # So looks like we will be interested in the following:
     # player_id, name, position, birth_place, college, high_school, draft_team, draft_round, draft_year

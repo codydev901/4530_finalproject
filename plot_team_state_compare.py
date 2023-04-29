@@ -6,7 +6,7 @@ pkz325
 CPSC 4530 Spring 2023
 Course Project
 
-Doc Doc Doc
+Extra processing step for the Team State Compare viz.
 """
 
 
@@ -21,9 +21,6 @@ def parse_data():
 
     for team in team_year_df["team"].unique():
         for year in team_year_df["year"].unique():
-
-            if year < 1967:
-                continue
 
             sub_team_year_df = team_year_df[(team_year_df["team"] == team) &
                                             (team_year_df["year"] == year)]

@@ -6,9 +6,9 @@ pkz325
 CPSC 4530 Spring 2023
 Course Project
 
-Doc Doc Doc
-
-
+Next step of processing for the primary visualization. Combines aspects of the 
+three parsed_data files and calculates the nfl - us_pop ratio used to compare
+over/under representation.
 """
 
 
@@ -147,8 +147,6 @@ def super_bowl_helper():
 
     res_df = pd.DataFrame(data=res_df[1:], columns=res_df[0])
     res_df.to_csv("plot_data/super_bowl_mvp_states.csv", index=False)
-
-
 
 
 def main():
